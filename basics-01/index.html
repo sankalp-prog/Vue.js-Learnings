@@ -21,6 +21,9 @@
       <h2>My Course Goal</h2>
       <p>{{ courseGoal }}</p>
       <p>learn more about <a v-bind:href="vueLink">Vue</a></p>
+      <p>{{ goalChange() }}</p>
+      <!-- Beware of crossSite scripting attacks, 'option3' data input can also be switched with a method() that returns html below -->
+      <h2 v-html="option3"></h2>
     </section>
   </body>
 </html>
