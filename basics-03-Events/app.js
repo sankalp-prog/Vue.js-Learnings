@@ -13,6 +13,7 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: "",
+      verifiedName: ""
     };
   },
   methods: {
@@ -29,6 +30,12 @@ const app = Vue.createApp({
       // this.name = event.target.value;
       this.name = event.target.value + " " + lastName;
     },
+    confirmName() {
+      this.verifiedName = this.name
+    },
+    testAlert() {
+      alert("Test Alert")
+    }
   },
 });
 

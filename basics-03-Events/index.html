@@ -39,8 +39,13 @@
 
       <!-- WITH PASSING ARGUMENTS/having to call a function rather than just pointing to it, to pass arguments: JS  -->
       <!-- NOTE: USE SINGLE QUOTES TO PASS THE PARAMETER ELSE IT WILL THROW ERROR -->
-      <input type="text" v-on:input="setName($event, 'Srivastava')">
-      <p>{{ name }}</p>
+      <input type="text" v-on:input="setName($event, 'Srivastava')" v-on:keyup.enter="confirmName">
+      <p>{{ verifiedName }}</p>
+      <!-- Issue with forms is that the default activity of the button in it is to reload the page -->
+      <form v-on:submit.prevent="testAlert">
+        <input type="text">
+        <button>Sign Up</button>
+      </form>
     </section>
   </body>
 </html>
