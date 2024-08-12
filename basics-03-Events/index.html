@@ -34,12 +34,12 @@
 
       <p>Result: {{ counter }}</p>
 
-      <!-- WITHOUT TAKING ANY ARGUMENTS/just pointing to the function rather than calling it: JS AUTOMATICALLY PUTS IN AN ARGUMENT CALLED EVENT -->
-       <!-- NOTE: USE SINGLE QUOTES TO PASS THE PARAMETER ELSE IT WILL THROW ERROR -->
-      <input type="text" v-on:input="setName($event, 'Srivastava')" />
+      <!-- WITHOUT TAKING ANY ARGUMENTS/just pointing to the function rather than calling it: JS AUTOMATICALLY PUTS IN AN ARGUMENT CALLED EVENT[look in app.js: "setName(event)"] -->
+      <!-- <input type="text" v-on:input="setName" /> -->
 
       <!-- WITH PASSING ARGUMENTS/having to call a function rather than just pointing to it, to pass arguments: JS  -->
-      <!-- <input type="text" v-on:input="setName($event, "Srivastava")"> -->
+      <!-- NOTE: USE SINGLE QUOTES TO PASS THE PARAMETER ELSE IT WILL THROW ERROR -->
+      <input type="text" v-on:input="setName($event, 'Srivastava')">
       <p>{{ name }}</p>
     </section>
   </body>
