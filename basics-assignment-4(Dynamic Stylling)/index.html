@@ -22,7 +22,7 @@
       <input type="text" v-model="userInput"/>
       <!-- (available classes: "user1", "user2") -->
       <!-- <p class="user1"> -->
-      <p :class="[ visibility ? 'visible' : 'hidden', {user1: setUser1, user2: setUser2}]">
+      <p :class="paraClasses">
         Style me!
       </p>
       <button @click="setVisibility">Toggle Paragraph</button>

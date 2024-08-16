@@ -7,22 +7,20 @@ const app = Vue.createApp({
     };
   },
   computed: {
-    setUser1() {
-      if (this.userInput == "user1") {
-        return true;
-      }
-    },
-    setUser2() {
-      if (this.userInput == "user2") {
-        return true;
-      }
+    paraClasses() {
+      return {
+        user1: this.userInput === "user1",
+        user2: this.userInput === "user2",
+        visible: this.visibility,
+        hidden: !this.visibility,
+      };
     },
   },
   methods: {
     setVisibility() {
       this.visibility = !this.visibility;
     },
-  }, 
+  },
 });
 
 app.mount("#assignment");
