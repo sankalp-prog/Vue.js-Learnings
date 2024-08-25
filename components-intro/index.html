@@ -18,7 +18,7 @@
     </header>
     <section id="app">
       <ul>
-        <li v-for="friend in friends" :key="friend.id">
+        <li>
           <h2>{{ friend.name }}</h2>
           <!-- issue: the same method and data is being reused for each friend which means both the cards toggle when you press any one button -->
           <button @click="toggleDetails">Show Details</button>
@@ -27,6 +27,8 @@
             <li><strong>Email:</strong> {{ friend.email }}</li>
           </ul>
         </li>
+        <!-- Issue Resolve: Components not only seperates HTML but also the data's and methods. -->
+        <friend-card></friend-card>
       </ul>
     </section>
   </body>
