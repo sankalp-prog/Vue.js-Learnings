@@ -48,6 +48,20 @@ export default {
       default: false,
     },
   },
+  // BASIC WAY OF DEFINING CUSTOM EVENTS-
+  // emits: ['toggle-favourite'],
+
+  // DEFINING AS WELL VALIDATIONG CUSTOM EVENTS-
+  emits: {
+    "toggle-favourite": function (id) {
+      if (id) {
+        return true;
+      } else {
+        console.warn("Id is missing!");
+        return false;
+      }
+    },
+  },
   data() {
     return {
       display: false,
