@@ -5,8 +5,17 @@
     </header>
     <ul>
       <!-- REMEMBER TO USE KEBAB CASING HERE AND IN THE JS SIDE[PROPS] GIVE THE SAME NAME BUT IN CAMEL CASING -->
-       <!-- when giving using v-for in custom components, providing a unique key attribute is a must -->
-      <friend-list v-for="friend in friends" :key="friend.id" :name="friend.name" :phone-number="friend.phone" :email-id="friend.email"></friend-list>
+      <!-- when giving using v-for in custom components, providing a unique key attribute is a must -->
+      <friend-list
+        v-for="friend in friends"
+        :key="friend.id"
+        :id="friend.id"
+        :name="friend.name"
+        :phone-number="friend.phone"
+        :email-id="friend.email"
+        :is-favourite="friend.isFavourite"
+        @toggle-favourite="setFavourite"
+      ></friend-list>
     </ul>
   </div>
 </template>
@@ -21,15 +30,25 @@ export default {
           name: "Manuel Lorenz",
           phone: "01234 5678 991",
           email: "manuel@localhost.com",
+          isFavourite: false,
         },
         {
           id: "julie",
           name: "Julie Jones",
           phone: "09876 543 221",
           email: "julie@localhost.com",
+          isFavourite: true,
         },
       ],
     };
+  },
+  methods: {
+    setFavourite(friendId) {
+      const desiredFriend = this.friends.find(
+        (friend) => friend.id === friendId
+      );
+      desiredFriend.isFavourite = !desiredFriend.isFavourite;
+    },
   },
 };
 </script>

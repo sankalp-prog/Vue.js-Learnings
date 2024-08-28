@@ -1,9 +1,12 @@
 <template>
   <div>
     <li>
-      <h2>{{ name }}</h2>
+      <h2>{{ name }} {{ isFavourite ? "(Favourite)" : "" }}</h2>
       <button @click="toggleDisplay">
         {{ display ? "Hide" : "Show" }} Info
+      </button>
+      <button @click="toggleIsFavourite">
+        {{ isFavourite ? "Unfavourite" : "Favourite" }}
       </button>
       <ul v-if="display">
         <li><strong>Phone No:</strong> {{ phoneNumber }}</li>
@@ -21,29 +24,41 @@ export default {
   // props: {name: Number, phoneNumber: String, emailId: String},
   // 3RD METHOD- Even more validations
   props: {
-    name: { type: String, required: true },
-    phoneNumber: { type: String, required: true },
+    id: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
     emailId: {
       type: String,
       required: false,
       default: "null@example.com",
       // validator: function (value) {},
     },
+    isFavourite: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   data() {
     return {
       display: false,
-      friend: {
-        id: "manuel",
-        name: "Manuel Lorenz",
-        phone: "01234 5678 991",
-        email: "manuel@localhost.com",
-      },
     };
   },
   methods: {
     toggleDisplay() {
       this.display = !this.display;
+    },
+    toggleIsFavourite() {
+      this.$emit("toggle-favourite", this.id);
     },
   },
 };
