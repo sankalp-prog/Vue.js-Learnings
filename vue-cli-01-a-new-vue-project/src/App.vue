@@ -4,8 +4,9 @@
       <h1>Friends List</h1>
     </header>
     <ul>
-      <friend-list></friend-list>
-      <friend-list></friend-list>
+      <!-- REMEMBER TO USE KEBAB CASING HERE AND IN THE JS SIDE[PROPS] GIVE THE SAME NAME BUT IN CAMEL CASING -->
+      <friend-list name="Manuel Lorenz" phone-number="01234 5678 991" email-id="manuel@localhost.com"></friend-list>
+      <friend-list name="Julie Jones" phone-number="09876 543 221" email-id="julie@localhost.com"></friend-list>
     </ul>
   </div>
 </template>
