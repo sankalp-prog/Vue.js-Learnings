@@ -5,8 +5,8 @@
     </header>
     <ul>
       <!-- REMEMBER TO USE KEBAB CASING HERE AND IN THE JS SIDE[PROPS] GIVE THE SAME NAME BUT IN CAMEL CASING -->
-      <friend-list name="Manuel Lorenz" phone-number="01234 5678 991" email-id="manuel@localhost.com"></friend-list>
-      <friend-list name="Julie Jones" phone-number="09876 543 221" email-id="julie@localhost.com"></friend-list>
+       <!-- when giving using v-for in custom components, providing a unique key attribute is a must -->
+      <friend-list v-for="friend in friends" :key="friend.id" :name="friend.name" :phone-number="friend.phone" :email-id="friend.email"></friend-list>
     </ul>
   </div>
 </template>
