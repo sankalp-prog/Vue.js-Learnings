@@ -1,38 +1,47 @@
 <template>
-  <form @submit.prevent>
-    <input v-model="friend.id" type="text" placeholder="ID" />
-    <input v-model="friend.name" type="text" placeholder="Name" />
-    <input v-model="friend.phone" type="text" placeholder="Phone No" />
-    <input v-model="friend.email" type="text" placeholder="Email ID" />
-    <button @click="submitFriend">Add New Friend</button>
+  <form @submit.prevent="submitFriend">
+    <div>
+      <label>Name</label>
+      <input v-model="enteredName" type="text" placeholder="Name" />
+    </div>
+    <div>
+      <label>Phone</label>
+      <input v-model="enteredPhone" type="tel" placeholder="Phone No" />
+    </div>
+    <div>
+      <label>E-mail</label>
+      <input v-model="enteredEmail" type="email" placeholder="Email ID" />
+    </div>
+    <div>
+      <button>Add New Friend</button>
+    </div>
   </form>
 </template>
 
 <script>
 export default {
+  emits: ["submit-friend"],
   data() {
     return {
-      friend: {
-        id: "",
-        name: "",
-        phone: "",
-        email: "",
-        isFavourite: false,
-      },
+      enteredName: "",
+      enteredPhone: "",
+      enteredEmail: "",
     };
   },
   methods: {
     reset() {
-      this.friend = {
-        id: "",
-        name: "",
-        phone: "",
-        email: "",
-        isFavourite: false,
-      };
+      this.enteredName = "";
+      this.enteredPhone = "";
+      this.enteredEmail = "";
     },
+
     submitFriend() {
-      this.$emit("submit-friend", this.friend);
+      this.$emit(
+        "submit-friend",
+        this.enteredName,
+        this.enteredPhone,
+        this.enteredEmail
+      );
       this.reset();
     },
   },
