@@ -3,6 +3,7 @@
     <header>
       <h1>Friends List</h1>
     </header>
+    <new-friend @submit-friend="addFriend"></new-friend>
     <ul>
       <!-- REMEMBER TO USE KEBAB CASING HERE AND IN THE JS SIDE[PROPS] GIVE THE SAME NAME BUT IN CAMEL CASING -->
       <!-- when giving using v-for in custom components, providing a unique key attribute is a must -->
@@ -48,6 +49,10 @@ export default {
         (friend) => friend.id === friendId
       );
       desiredFriend.isFavourite = !desiredFriend.isFavourite;
+    },
+    addFriend(friend) {
+      this.friends.push(friend);
+      console.log(this.friends);
     },
   },
 };
