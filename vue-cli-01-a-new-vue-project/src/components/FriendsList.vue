@@ -12,6 +12,7 @@
         <li><strong>Phone No:</strong> {{ phoneNumber }}</li>
         <li><strong>Email:</strong> {{ emailId }}</li>
       </ul>
+      <button @click="deleteFriend">Delete</button>
     </li>
   </div>
 </template>
@@ -49,7 +50,7 @@ export default {
     },
   },
   // BASIC WAY OF DEFINING CUSTOM EVENTS-
-  emits: ["toggle-favourite"],
+  emits: ["toggle-favourite", "delete-friend"],
 
   // DEFINING AS WELL VALIDATIONG CUSTOM EVENTS-
   // emits: {
@@ -74,6 +75,9 @@ export default {
     toggleIsFavourite() {
       this.$emit("toggle-favourite", this.id);
     },
+    deleteFriend() {
+      this.$emit("delete-friend", this.id)
+    }
   },
 };
 </script>
