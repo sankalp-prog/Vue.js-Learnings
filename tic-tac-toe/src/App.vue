@@ -10,7 +10,7 @@
       </ul>
     </div>
 
-    <div id="grid">
+    <div id="grid" v-if="this.result === ''">
       <div
         class="square"
         v-for="square in squares"
@@ -20,6 +20,9 @@
         {{ square.value }}
       </div>
     </div>
+    <div v-else-if="this.result === 'player'">Player wins</div>
+    <div v-else-if="this.result === 'computer'">Computer wins</div>
+    <div v-else-if="this.result === 'draw'">Its a Draw</div>
   </section>
 </template>
 
@@ -27,6 +30,7 @@
 export default {
   data() {
     return {
+      char: "",
       result: "",
       squares: [
         {
@@ -66,33 +70,63 @@ export default {
           value: "",
         },
       ],
-      winningSquares: [[0, 1, 2], [3, 4, 5] [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8],[2, 4, 6]]
+      winningSquares: [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ],
     };
   },
   methods: {
     computerInput() {
+      this.char = "O";
       let num = 0;
       let selectedSquare = this.squares[0];
       while (selectedSquare.value !== "") {
         num = Math.floor(Math.random() * 9);
         selectedSquare = this.squares.find((square) => square.id === num);
       }
-      selectedSquare.value = "O";
+      selectedSquare.value = this.char;
+      if (this.check()) {
+        this.result = "computer";
+      }
     },
     playerInput(id) {
+      this.char = "X";
       const selectedSquare = this.squares.find((square) => square.id === id);
       if (selectedSquare.value === "") {
-        selectedSquare.value = "X";
+        selectedSquare.value = this.char;
+        if (this.check()) {
+          this.result = "player";
+        }
         if (this.squares.find((square) => square.value === "")) {
           this.computerInput();
         } else {
-          this.result = "Draw"
+          this.result = "draw";
         }
       }
     },
-    // check() {
-    //   if (this.squares[])
-    // }
+    check() {
+      for (let i = 0; i < this.winningSquares.length; i++) {
+        let [a, b, c] = this.winningSquares[i];
+        let squareA = this.squares.find((square) => square.id === a);
+        let squareB = this.squares.find((square) => square.id === b);
+        let squareC = this.squares.find((square) => square.id === c);
+        if (
+          squareA.value === this.char &&
+          squareB.value === this.char &&
+          squareC.value === this.char
+        ) {
+          return true;
+        }
+      }
+      return false;
+    },
   },
 };
 </script>
