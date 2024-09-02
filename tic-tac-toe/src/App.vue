@@ -1,15 +1,5 @@
 <template>
   <section>
-    <div>
-      <h2>Todo List</h2>
-      <ul>
-        <li>Create the 3x3 tic tac toe grid.</li>
-        <li>Allow user to click and put 'X'</li>
-        <li>Computer randomly puts 'O' where it's empty</li>
-        <li>Continue till winner is determined or all boxes are filled.</li>
-      </ul>
-    </div>
-
     <div id="grid" v-if="this.result === ''">
       <div
         class="square"
@@ -104,7 +94,7 @@ export default {
         if (this.check()) {
           this.result = "player";
         }
-        if (this.squares.find((square) => square.value === "")) {
+        else if (this.squares.find((square) => square.value === "")) {
           this.computerInput();
         } else {
           this.result = "draw";
