@@ -1,6 +1,8 @@
 <template>
   <div>
     <the-header></the-header>
+    <!-- ANOTHER WAY TO WRITE THE ABOVE TAG: -->
+    <!-- <TheHeader />  -->
     <badge-list></badge-list>
     <user-info
       :full-name="activeUser.name"
@@ -11,13 +13,37 @@
 </template>
 
 <script>
+import TheHeader from "./components/TheHeader.vue";
+import BadgeList from "./components/BadgeList.vue";
+import UserInfo from "./components/UserInfo.vue";
+
 export default {
+  // First way to write local components-
+  // components: {
+  //   'the-header': TheHeader,
+  //   'badge-list': BadgeList,
+  //   'user-info': UserInfo
+  // },
+
+  // Second way-
+  // components: {
+  //   TheHeader: TheHeader,
+  //   BadgeList: BadgeList,
+  //   UserInfo: UserInfo
+  // },
+
+  // Modern way-[Just a shorter way to write the above 2nd method]
+  components: {
+    TheHeader,
+    BadgeList,
+    UserInfo
+  },
   data() {
     return {
       activeUser: {
-        name: 'Maximilian Schwarzmüller',
-        description: 'Site owner and admin',
-        role: 'admin',
+        name: "Maximilian Schwarzmüller",
+        description: "Site owner and admin",
+        role: "admin",
       },
     };
   },
