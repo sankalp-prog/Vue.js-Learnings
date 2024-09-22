@@ -1,13 +1,15 @@
 <template>
   <div>
-    <active-goals></active-goals>
-    <manage-goals></manage-goals>
+    <button @click="dynamicComponent('activeGoals')">Active Goals</button>
+    <button @click="dynamicComponent('manageGoals')">Manage Goals</button>
+    <active-goals v-if="activeComponent == 'activeGoals'"></active-goals>
+    <manage-goals v-if="activeComponent == 'manageGoals'"></manage-goals>
   </div>
 </template>
 
 <script>
-import ActiveGoals from "./components/ActiveGoals.vue"
-import ManageGoals from "./components/ManageGoals.vue"
+import ActiveGoals from "./components/ActiveGoals.vue";
+import ManageGoals from "./components/ManageGoals.vue";
 
 export default {
   components: {
@@ -15,7 +17,14 @@ export default {
     ManageGoals,
   },
   data() {
-    return {};
+    return {
+      activeComponent: "",
+    };
+  },
+  methods: {
+    dynamicComponent(cmp) {
+      this.activeComponent = cmp;
+    },
   },
 };
 </script>
