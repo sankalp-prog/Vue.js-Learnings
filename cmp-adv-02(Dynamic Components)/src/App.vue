@@ -2,8 +2,10 @@
   <div>
     <button @click="dynamicComponent('activeGoals')">Active Goals</button>
     <button @click="dynamicComponent('manageGoals')">Manage Goals</button>
-    <active-goals v-if="activeComponent == 'activeGoals'"></active-goals>
-    <manage-goals v-if="activeComponent == 'manageGoals'"></manage-goals>
+    <!-- <active-goals v-if="activeComponent == 'activeGoals'"></active-goals>
+    <manage-goals v-if="activeComponent == 'manageGoals'"></manage-goals> -->
+    <!-- USING DYNAMIC COMPONENT TO DO THE ABOVE COMMENTED LINES: -->
+    <component :is="activeComponent"></component>
   </div>
 </template>
 
