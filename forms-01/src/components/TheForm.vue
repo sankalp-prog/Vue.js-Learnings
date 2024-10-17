@@ -2,7 +2,8 @@
   <form @submit.prevent="submitForm">
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" v-model="userName" />
+      <input id="user-name" name="user-name" type="text" v-model="userName" @blur="validity"/>
+      <p v-if="isValid === 'invalid'" :class="{invalid: isValid === 'invalid'}">Enter a valid name!</p>
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
@@ -26,30 +27,66 @@
     <div class="form-control">
       <h2>What are you interested in?</h2>
       <div>
-        <input id="interest-news" name="interest" type="checkbox" value="news" v-model="interest"/>
+        <input
+          id="interest-news"
+          name="interest"
+          type="checkbox"
+          value="news"
+          v-model="interest"
+        />
         <label for="interest-news">News</label>
       </div>
       <div>
-        <input id="interest-tutorials" name="interest" type="checkbox" value="tutorial" v-model="interest"/>
+        <input
+          id="interest-tutorials"
+          name="interest"
+          type="checkbox"
+          value="tutorial"
+          v-model="interest"
+        />
         <label for="interest-tutorials">Tutorials</label>
       </div>
       <div>
-        <input id="interest-nothing" name="interest" type="checkbox" value="nothing" v-model="interest"/>
+        <input
+          id="interest-nothing"
+          name="interest"
+          type="checkbox"
+          value="nothing"
+          v-model="interest"
+        />
         <label for="interest-nothing">Nothing</label>
       </div>
     </div>
     <div class="form-control">
       <h2>How do you learn?</h2>
       <div>
-        <input id="how-video" name="how" type="radio" value="video" v-model="how"/>
+        <input
+          id="how-video"
+          name="how"
+          type="radio"
+          value="video"
+          v-model="how"
+        />
         <label for="how-video">Video Courses</label>
       </div>
       <div>
-        <input id="how-blogs" name="how" type="radio" value="blog" v-model="how"/>
+        <input
+          id="how-blogs"
+          name="how"
+          type="radio"
+          value="blog"
+          v-model="how"
+        />
         <label for="how-blogs">Blogs</label>
       </div>
       <div>
-        <input id="how-other" name="how" type="radio" value="other" v-model="how"/>
+        <input
+          id="how-other"
+          name="how"
+          type="radio"
+          value="other"
+          v-model="how"
+        />
         <label for="how-other">Other</label>
       </div>
     </div>
@@ -69,9 +106,17 @@ export default {
       referrer: 'google',
       interest: [],
       how: null,
+      isValid: 'pending',
     };
   },
   methods: {
+    validity() {
+      if (this.userName === '') {
+        this.isValid = 'invalid';
+      } else {
+        this.isValid = 'valid';
+      }
+    },
     submitForm() {
       console.log('Username: ' + this.userName);
       this.userName = '';
@@ -101,6 +146,10 @@ form {
 
 .form-control {
   margin: 0.5rem 0;
+}
+
+.form-control .invalid{
+  color: red;
 }
 
 label {
