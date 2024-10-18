@@ -2,7 +2,7 @@
   <form @submit.prevent="submitForm">
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" v-model="userName" @blur="validity"/>
+      <input id="user-name" name="user-name" type="text" v-model.trim="userName" @blur="validity"/>
       <p v-if="isValid === 'invalid'" :class="{invalid: isValid === 'invalid'}">Enter a valid name!</p>
     </div>
     <div class="form-control">
@@ -90,7 +90,7 @@
         <label for="how-other">Other</label>
       </div>
     </div>
-    <div class="form-control"></div>
+    <RatingControl></RatingControl>
     <div>
       <button @click="test">Save Data</button>
     </div>
@@ -98,7 +98,12 @@
 </template>
 
 <script>
+import RatingControl from './RatingControl.vue';
+
 export default {
+  components: {
+    RatingControl
+  },
   data() {
     return {
       userName: '',
