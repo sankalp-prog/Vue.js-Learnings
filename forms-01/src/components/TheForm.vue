@@ -2,8 +2,19 @@
   <form @submit.prevent="submitForm">
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" v-model.trim="userName" @blur="validity"/>
-      <p v-if="isValid === 'invalid'" :class="{invalid: isValid === 'invalid'}">Enter a valid name!</p>
+      <input
+        id="user-name"
+        name="user-name"
+        type="text"
+        v-model.trim="userName"
+        @blur="validity"
+      />
+      <p
+        v-if="isValid === 'invalid'"
+        :class="{ invalid: isValid === 'invalid' }"
+      >
+        Enter a valid name!
+      </p>
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
@@ -90,7 +101,8 @@
         <label for="how-other">Other</label>
       </div>
     </div>
-    <RatingControl></RatingControl>
+    <!-- Using v-model in a custom component is the same as binding :model-value and emiting a custom event @update:modelvalue -->
+    <RatingControl v-model="rating"></RatingControl>
     <div>
       <button @click="test">Save Data</button>
     </div>
@@ -102,7 +114,7 @@ import RatingControl from './RatingControl.vue';
 
 export default {
   components: {
-    RatingControl
+    RatingControl,
   },
   data() {
     return {
@@ -112,6 +124,7 @@ export default {
       interest: [],
       how: null,
       isValid: 'pending',
+      rating: null,
     };
   },
   methods: {
@@ -134,6 +147,9 @@ export default {
       console.log('Checkboxes: ' + this.interest);
       console.log(this.interest);
       console.log('Radio btn: ' + this.how);
+      console.log('Rating');
+      console.log(this.rating);
+      this.rating = null;
     },
   },
 };
@@ -153,7 +169,7 @@ form {
   margin: 0.5rem 0;
 }
 
-.form-control .invalid{
+.form-control .invalid {
   color: red;
 }
 

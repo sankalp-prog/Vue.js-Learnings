@@ -1,13 +1,13 @@
 <template>
   <ul>
     <!-- `type="button"` is used to overide the default form nature of making buttons inside the form to submit the entire form-->
-    <li :class="{ active: activeoption === 'poor' }">
+    <li :class="{ active: modelValue === 'poor' }">
       <button type="button" @click="activate('poor')">poor</button>
     </li>
-    <li :class="{ active: activeoption === 'average' }">
+    <li :class="{ active: modelValue === 'average' }">
       <button type="button" @click="activate('average')">average</button>
     </li>
-    <li :class="{ active: activeoption === 'great' }">
+    <li :class="{ active: modelValue === 'great' }">
       <button type="button" @click="activate('great')">great</button>
     </li>
   </ul>
@@ -15,14 +15,16 @@
 
 <script>
 export default {
-  data() {
-    return {
-      activeoption: null,
-    };
-  },
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+//   data() {
+//     return {
+//       activeoption: null,
+//     };
+//   },
   methods: {
     activate(option) {
-      this.activeoption = option;
+      this.$emit('update:modelValue', option);
     },
   },
 };
