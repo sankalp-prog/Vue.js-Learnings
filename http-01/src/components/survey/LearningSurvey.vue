@@ -72,6 +72,7 @@ export default {
       //   rating: this.chosenRating,
       // });
 
+      // Created a test backend in firebase
       fetch(
         'https://vue-http-demo-3935c-default-rtdb.firebaseio.com/surveys.json',
         {
