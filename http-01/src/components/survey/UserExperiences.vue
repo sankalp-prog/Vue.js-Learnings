@@ -46,10 +46,10 @@ export default {
       // Created a test backend in firebase
       fetch(
         // Correct URL
-        // 'https://vue-http-demo-3935c-default-rtdb.firebaseio.com/surveys.json'
+        'https://vue-http-demo-3935c-default-rtdb.firebaseio.com/surveys.json'
 
         // NOTE: Faking a server side error by sending the request to an invalid URL so that firebase responds with an error message that we can handle
-        'https://vue-http-demo-3935c-default-rtdb.firebaseio.com/surveys'
+        // 'https://vue-http-demo-3935c-default-rtdb.firebaseio.com/surveys'
       )
         .then((response) => {
           if (response.ok) {
